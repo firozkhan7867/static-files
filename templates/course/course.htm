@@ -1,0 +1,93 @@
+{% extends 'base.htm' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Courses List
+{% endblock title %}
+
+{% block content %}
+
+<header class="header_inner courses_page">
+<div class="intro_wrapper">
+    <div class="container">  
+        <div class="row">        
+             <div class="col-sm-12 col-md-8 col-lg-8">
+                <div class="intro_text">
+                    <h1>Courese Page</h1>
+                    <div class="pages_links">
+                        <a href="{% url 'index' %}" title="">Home</a>
+                        <a href="#" title="" class="active">Course Page</a>
+                    </div>
+                </div>
+            </div>             
+        </div>
+    </div> 
+</div> 
+</header> <!-- End Header -->
+
+
+<!--Start Courses Area Section-->
+
+<section class="courses_features mt-4">
+    <div class="container">
+        <br><br><br>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="sub_title">
+                    <h2>We Have Tones of Course <br>for Your!!</h2>
+                </div><!-- ends: .section-header -->
+            </div>
+        </div>
+        <div class="row">
+            {% if btech is not None %}
+            <div class="col-sm-6 col-md-4 col-lg-4 single_features_wrapper" style="height: 300px;">
+                <div class="feature_single feature_single_1">
+                    <img src="{{btech.course_img.url}}" alt="" style="height: 250px;">
+                    <div class="feature_content">
+                        <a href="{% url 'sem-list' branch_name=branch_name course_name=btech %}" title=""><h3>{{btech}}</h3></a>
+                        <p>Over 700 Courses</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        
+           
+
+            <div class="col-sm-6 col-md-4 col-lg-4 single_features_wrapper" style="height: 300px;">
+                <div class="feature_single feature_single_2">
+                    <img src="{{mtech.course_img.url}}" alt="" style="height: 250px;">
+                    <div class="feature_content">
+                        <a href="{% url 'sem-list' branch_name=branch_name course_name=mtech %}" title=""><h3>{{mtech}}</h3></a>
+                        <p>Over 500 Courses</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-4 single_features_wrapper" style="height: 300px;">
+                <div class="feature_single feature_single_5">
+                    <img src="{{diploma.course_img.url}}" alt="" style="height: 250px;">
+                    <div class="feature_content">
+                        <a href="{% url 'sem-list' branch_name=branch_name course_name=diploma %}" title=""><h3>{{diploma}}</h3></a>
+                        <p>Over 450 Courses</p>
+                    </div>
+                </div>
+            </div>
+            {% if degree is not None %}
+            <div class="col-sm-6 col-md-4 col-lg-4 single_features_wrapper" style="height: 300px;">
+                <div class="feature_single feature_single_4">
+                    <img src="{{degree.course_img.url}}" alt="" style="height: 250px;">
+                    <div class="feature_content">
+                        <a href="{% url 'sem-list' branch_name=branch_name course_name=degree %}" title=""><h3>{{degree}}</h3></a>
+                        <p>Over 500 Courses</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>  <!-- End Courses Features -->
+
+
+{% endblock content %}

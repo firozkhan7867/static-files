@@ -1,0 +1,309 @@
+{% extends 'base.htm' %}
+
+{% block title %}
+Index Page
+{% endblock title %}
+
+{% load humanize %}
+
+{% load static %}
+
+{% block content %}
+<header class="header_3">
+
+<div class="intro_wrapper">
+    <div class="container">  
+        <div class="row">        
+             <div class="col-sm-12 col-md-8 col-lg-8">
+                <div class="intro_text">
+                    <h1>Find The Best  Resources For Exam  Online.</h1>
+                    <p>Ante amet vitae vulputate odio nulla vel pretium pulvinar aenean.<br> Poncus eget adipiscing etiam arcu Ultricies.</p>
+                    <div class="intro_button">
+                        <a href="{% url 'register' %}" class="nav-link">Free Register Now</a>
+                    </div>
+                </div>
+            </div>				
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="search_wrapper">
+                    <div class="search-option" >
+                        <form action="#">
+                            <div class="dropdown dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="all-categories "><span>Categories</span> <i class="cat_icon flaticon-down-arrow"></i></div>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li class="dropdown-item" >Action</li>
+                                    <li class="dropdown-item" >Another action</li>
+                                    <li class="dropdown-item" >Action</li>
+                                    <li class="dropdown-item" >Another action</li>
+                                    <li class="dropdown-item" >Action</li>
+                                    <li class="dropdown-item" >Another action</li>
+                                </ul>
+                            </div>
+                            <div class="form-group d-flex">
+                                <input placeholder="What do you want to learn today?" type="email" required="">
+                            </div>
+                            <div class="submit-btn">
+                                <button type="submit" class="text-center">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> 
+</div>  
+</header> <!-- End header -->
+
+
+
+
+
+<section class="courses_features mt-4">
+    <div class="container">
+        <br><br><br>
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="sub_title">
+                    <h2>We Have Tones of Course <br>for Your!!</h2>
+                </div><!-- ends: .section-header -->
+            </div>
+        </div>
+        <div class="row">
+        {% if branch %}
+            <div class="col-sm-6 col-md-4 col-lg-4 single_features_wrapper" style="height: 300px;">
+                <div class="feature_single feature_single_1">
+                    <img src="{{cse.photo.url}}" alt="" style="height: 250px;">
+                    <div class="feature_content">
+                        <a href="{% url 'branch-courses' cse.branch_name %}" title=""><h3>{{cse.branch_name}}</h3></a>
+                        <p>Over 700 Courses</p>
+                    </div>
+                </div>
+            </div>
+        
+           
+
+            <div class="col-sm-6 col-md-4 col-lg-4 single_features_wrapper" style="height: 300px;">
+                <div class="feature_single feature_single_2">
+                    <img src="{{mech.photo.url}}" alt="" style="height: 250px;">
+                    <div class="feature_content">
+                        <a href="{% url 'branch-courses' mech.branch_name %}" title=""><h3>{{mech.branch_name}}</h3></a>
+                        <p>Over 500 Courses</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-4 single_features_wrapper" style="height: 300px;">
+                <div class="feature_single feature_single_5">
+                    <img src="{{civil.photo.url}}" alt="" style="height: 250px;">
+                    <div class="feature_content">
+                        <a href="{% url 'branch-courses' civil.branch_name %}" title=""><h3>{{civil.branch_name}}</h3></a>
+                        <p>Over 450 Courses</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-4 single_features_wrapper" style="height: 300px;">
+                <div class="feature_single feature_single_4">
+                    <img src="{{eee.photo.url}}" alt="" style="height: 250px;">
+                    <div class="feature_content">
+                        <a href="{% url 'branch-courses' eee.branch_name %}" title=""><h3>{{eee.branch_name}}</h3></a>
+                        <p>Over 500 Courses</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4 col-lg-4 single_features_wrapper" style="height: 300px;">
+                <div class="feature_single feature_single_1">
+                    <img src="{{ece.photo.url}}" alt="" style="height: 250px;">
+                    <div class="feature_content">
+                        <a href="{% url 'branch-courses' ece.branch_name %}" title=""><h3>{{ece.branch_name}}</h3></a>
+                        <p>Over 1000 Courses</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 single_features_wrapper" style="height: 300px;">
+                <div class="feature_single feature_single_6">
+                    <img src="{{it.photo.url}}" alt="" style="height: 250px;">
+                    <div class="feature_content">
+                        <a href="{% url 'branch-courses' it.branch_name %}" title=""><h3>{{it.branch_name}}</h3></a>
+                        <p>Over 350 Courses</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>  <!-- End Courses Features -->
+
+
+
+<section class="about_us_thinking">
+<div class="container-fluid">            
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 p-0">
+            <div class="banner_learn">
+                <img src="{% static 'images/banner/about_thinking.jpg'%}" alt="" class="img-fluid">
+             </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <div class="title">
+                <h2>Doing The Right Thing At The Right Time.</h2>
+                <div class="step_services">
+                    <h3><span>01.</span>Exprerience</h3>
+                    <p>Lorem ipsum dolor sit amet mollis felis dapibus arcu donec viverra. Pede phasellus eget maecenas.</p>  
+                </div>                    
+                <div class="step_services">
+                    <h3><span>02.</span>Education</h3>
+                    <p>Lorem ipsum dolor sit amet mollis felis dapibus arcu donec viverra. Pede phasellus eget maecenas.</p>   
+                </div>                   
+                 <div class="step_services">
+                    <h3><span>03.</span>Certificate</h3>
+                    <p>Lorem ipsum dolor sit amet mollis felis dapibus arcu donec viverra. Pede phasellus eget maecenas.</p>  
+                </div>
+             </div>
+        </div>
+    </div>
+</div>    
+</section><!-- End About Us Your Thingking -->
+
+
+
+<section class="popular_courses bg-light">
+<div class="container"> 
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="sub_title">
+                <h2>Our Popular Courses</h2>
+                <p>Lorem ipsum dolor sit amet mollis felis dapibus arcu donec viverra. Pede phasellus eget. Etiam maecenas vel vici quis dictum rutrum nec nisi et.</p>  
+            </div><!-- ends: .section-header -->
+        </div>
+        {% if subs %}
+                {% for sub in subs %}
+
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="single-courses" style="height: 500px;">
+                            <div class="courses_banner_wrapper row">
+                                <div class="courses_banner col-lg-12 col-12"><a href="{% url 'course-details' sub.subject.subject_name %}"><img src="{{sub.subject.subj_image.url}}" alt="" class="img-fluid"></a></div>
+                                <div class="purchase_price col-lg-12 col-12">
+                                    <a href="#" class="read_more-btn">Free</a>
+                                </div>
+                            </div>
+                            <div class="courses_info_wrapper">
+                                <div class="courses_title">
+                                    <h3><a href="#">{{sub.subject.subject_name}}</a></h3>
+                                    <div class="teachers_name">Teacher -
+                                        {% for i in  sub.subject.teacher_set.all %}
+                                        <a href="{% url 'teacher-details' i.username %}" title="">  {{i}} </a> &nbsp
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="courses_info">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-user"></i> {{ sub.upload_date | naturaltime }}  </li>
+                                        <li><i class="fas fa-calendar-alt"></i>30 Students</li>
+                                    </ul>
+                                    <a href="{% url 'course-details' sub.subject.subject_name %}" class="cart_btn">More Details</a>
+                                </div>
+                            </div>
+                        </div><!-- Ends: .single courses -->
+                    </div><!-- Ends: . -->
+
+                {% endfor %}
+            {% else %}
+                <h1>No courses available right now</h1>
+            {% endif %}
+            <div class="envent_all_view btn btn-danger">
+                <a href="{% url 'courses' %}" title="">View All</a>
+            </div>
+        </div><!-- Ends: . -->             
+    </div>
+
+</div>
+</section><!-- Ends: Pupular Courses -->  
+
+
+
+<section class="video_online bg-light">
+<div class="container bg-light">
+    <div class="row">
+        <div class="col-6 col-sm-6 col-md-3 col-lg-3 counter_single_wrapper">
+            <div class="section count_single">
+                <div class="project-count counter">7096</div>
+                <span>Active students</span>
+            </div>
+        </div>
+
+        <div class="col-6 col-sm-6 col-md-3 col-lg-3 counter_single_wrapper">
+            <div class="section count_single">
+                <div class="project-count counter">508</div>
+                <span>Online Courses</span>
+            </div>  
+        </div>  
+
+        <div class="col-6 col-sm-6 col-md-3 col-lg-3 counter_single_wrapper">
+            <div class="section count_single">
+                <div class="project-count"><span class="counter">100</span><span class="count_icon">%</span></div>
+                <span>Satisfaction</span>
+            </div>
+        </div>
+
+        <div class="col-6 col-sm-6 col-md-3 col-lg-3 counter_single_wrapper">
+            <div class="section count_single">
+                <div class="project-count counter">70</div>
+                <span>Fraduates</span>
+            </div>  
+        </div>  
+    </div>
+</div>
+<div class="bg_shapes">
+</div>
+</section><!-- End ONline Video -->
+
+
+<section class="meet_our_team">
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="meet_team_wrapper">  
+                <div class="sub_title">
+                    <h2>Meet Our Instractor</h2>
+                    <p>Some of the top highly qualified Instructors in our Institute. With great Teaching skills and Exprerience in real industry Technology</p>  
+                </div><!-- ends: .section-header -->
+                <div class="envent_all_view">
+                    <a href="{% url 'teachers' %}" title="">View All</a>
+                </div>
+            </div> 
+        </div>
+    </div>      
+    <div class="row">
+        {% if teachers %}
+            {% for teacher in teachers %}
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="testimonial_single">
+                        <div class="reviewer_info">
+                            <div class="pro_pic_teacher">
+                                <img src="{{teacher.profile_photo.url}}" alt="2" class="img-fluid">
+                            </div>
+                            <div class="name_position">
+                                <span class="name"><a href="{% url 'teacher-details' teacher.username %}" title="">{{ teacher }}</a></span>
+                                <span>Graphic Teacher</span>
+                            </div>
+                        </div>
+                    </div>                                       
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+<div class="shape_wrapper">
+    <img src="{% static 'images/shapes/testimonial_2_shpe_2.png' %}" alt="" class="shape_1">        
+    <img src="{% static 'images/shapes/testimonial_2_shpe_3.png' %}" alt="" class="shape_2">        
+    <img src="{% static 'images/shapes/testimonial_2_shpe_1.png' %}" alt="" class="shape_3">
+</div>
+</section><!-- End Meet Our Team -->
+
+
+
+
+
+{% endblock content %}

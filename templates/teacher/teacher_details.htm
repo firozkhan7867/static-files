@@ -1,0 +1,264 @@
+{% extends 'base.htm' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Teacher Details
+{% endblock title %}
+
+{% block content %}
+
+
+<header class="header_inner become_a_teacher">
+    <div class="intro_wrapper">
+        <div class="container">  
+            <div class="row">        
+                 <div class="col-sm-12 col-md-8 col-lg-8">
+                    <div class="intro_text">
+                        <h1>Teachers Profile</h1>
+                        <div class="pages_links">
+                            <a href="{% url 'index' %}" title="">Home</a>
+                            <a href="#" title="" class="active">Teacher profile</a>
+                            <a>{{teacher}}</a>
+                        </div>
+                    </div>
+                </div>              
+
+            </div>
+        </div> 
+    </div> 
+</header>
+
+
+
+<section class="teachers_profile bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 teacher-detail-left">
+                <div class="teacher_info_wrapper">
+                    <div class="teacger-image">
+                        <img src="{{teacher.profile_photo.url}}" alt="" class="img-fluid">
+                    </div>
+                    <div class="social_wraper">
+                        <ul class="social-items d-flex list-unstyled">
+                            <li><a href="#"><i class="fab fa-facebook-f fb-icon"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter twitt-icon"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin-in link-icon"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram ins-icon"></i></a></li>
+                        </ul>
+                    </div> 
+                    <div class="teacher-skills">
+                        <div class="skill-single">
+                            <span>programming skills - <span class="skills_lavel">{{teacher.programming_skills}}%</span></span>
+                            <span><span style="width:{{teacher.programming_skills}}%;"></span></span>
+                        </div>
+                        <div class="skill-single">
+                            <span>communication skills - <span class="skills_lavel">{{teacher.communication_skills}}%</span></span>
+                            <span><span style="width:{{teacher.communication_skills}}%;"></span></span>
+                        </div>
+                        <div class="skill-single">
+                            <span>teching skills - <span class="skills_lavel">{{teacher.teching_skills}}%</span></span>
+                            <span><span style="width:{{teacher.teching_skills}}%;"></span></span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div><!-- Ends: .teacher-detail-left -->
+            <div class="col-sm-8 teacher-detail-right">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="teacher-info">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h3>Name :</h3>
+                                    <span>{{teacher.username}}, M.Sc, M.Phil</span>
+                                </li>
+                                <li>
+                                    <h3>Department :</h3>
+                                    <span>{{teacher.department}}</span>
+                                </li>
+                                <li>
+                                    <h3>Experience :</h3>
+                                    <span>{{teacher.experience}} Years of Teaching Career</span>
+                                </li>
+                                <li>
+                                    <h3>Language :</h3>
+                                    <span>{{teacher.languages}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="teacher-contact">
+                            <h2>Contact Us</h2>
+                            <form action="#">
+                                <input type="text" placeholder="Your Name*" required>
+                                <input type="email" placeholder="Email*" required>
+                                <textarea>Your Message</textarea>
+                                <button type="submit">Submit Your Request</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="courses_tab_wrapper">  
+                            <div class="courses_details_nav_tabs">     
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item"><a class="nav-link active" href="#information" role="tab" data-toggle="tab"><i class="flaticon-info-sign"></i>About Insructor</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#curricularm" role="tab" data-toggle="tab"><i class="flaticon-portfolio"></i>Qualification</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#courses" role="tab" data-toggle="tab"><i class="flaticon-portfolio"></i>Courses</a></li>
+                                </ul>
+                            </div>   
+
+                            <!-- Tab panes -->
+                            <div class="tab_contents tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active show" id="information">
+                                    <p>{{teacher.about | safe}}</p>    
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="curricularm">
+                                    <p>{{teacher.qualification | safe}}</p>
+                                </div>                                
+                                <div role="tabpanel" class="tab-pane fade" id="courses">
+                                    <!--Start Courses Area Section-->
+                                    <div class="popular_courses">
+                                        <div class="row">
+                                            {% if courses %}
+                                                {% for course in courses %}
+                                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                        <div class="single-courses">
+                                                            <div class="courses_banner_wrapper">
+                                                                <div class="courses_banner"><a href="#"><img src="{{course.subj_image.url}}" alt="" class="img-fluid"></a></div>
+                                                                <div class="purchase_price">
+                                                                    <a href="#" class="read_more-btn">Free</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="courses_info_wrapper">
+                                                                <div class="courses_title">
+                                                                    <h3><a href="#">{{course.subject_name}}</a></h3>
+                                                                    <div class="teachers_name">Teachers - 
+                                                                        {% for i in course.teacher_set.all %}
+                                                                            <a href="{% url 'teacher-details' i.username %}" title="">  {{i.username}} </a> &nbsp
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="courses_info">
+                                                                    <ul class="list-unstyled">
+                                                                        <li><i class="fas fa-user"></i>{{ course.subjectdescription.upload_date | naturaltime }}</li>
+                                                                        <li><i class="fas fa-calendar-alt"></i>30 Students</li>
+                                                                    </ul>
+                                                                    <a href="{% url 'course-details' course.subject_name %}" class="cart_btn">More Details</a>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- Ends: .single courses -->
+                                                    </div><!-- Ends: . -->
+                                                {% endfor %}
+                                            {% endif %}
+                                            
+
+                                    </div><!-- Ends: . -->  
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div><!-- Ends: .teacher-detail-right -->
+        </div>
+    </div>
+</section><!-- Ends: .teacher-details-wrapper -->
+
+
+
+<!--Start Courses Area Section-->
+<section class="popular_courses bg-light">
+    <div class="container"> 
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="sub_title">
+                    <h2>Related Courses</h2>
+                    <p>Lorem ipsum dolor sit amet mollis felis dapibus arcu donec viverra. Pede phasellus eget. Etiam maecenas vel vici quis dictum rutrum nec nisi et.</p>  
+                </div><!-- ends: .section-header -->
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="single-courses">
+                    <div class="courses_banner_wrapper">
+                        <div class="courses_banner"><a href="#"><img src="{% static 'images/courses/courses_1.jpg' %}" alt="" class="img-fluid"></a></div>
+                        <div class="purchase_price">
+                            <a href="#" class="read_more-btn">$150</a>
+                        </div>
+                    </div>
+                    <div class="courses_info_wrapper">
+                        <div class="courses_title">
+                            <h3><a href="#">Make Better Decisions</a></h3>
+                            <div class="teachers_name">Teacher - <a href="#" title="">Jhonthan Smith</a></div>
+                        </div>
+                        <div class="courses_info">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-user"></i>180 Days</li>
+                                <li><i class="fas fa-calendar-alt"></i>30 Students</li>
+                            </ul>
+                            <a href="#" class="cart_btn">Add to Cart</a>
+                        </div>
+                    </div>
+                </div><!-- Ends: .single courses -->
+            </div><!-- Ends: . -->
+
+
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="single-courses">
+                    <div class="courses_banner_wrapper">
+                        <div class="courses_banner"><a href="#"><img src="{% static 'images/courses/courses_2.jpg' %}" alt="" class="img-fluid"></a></div>
+                        <div class="purchase_price">
+                            <a href="#" class="read_more-btn">Free</a>
+                        </div>
+                    </div>
+                    <div class="courses_info_wrapper">
+                        <div class="courses_title">
+                            <h3><a href="#">How To Be A Speaker</a></h3>
+                            <div class="teachers_name">Teacher - <a href="#" title="">Denise Wood</a></div>
+                        </div>
+                        <div class="courses_info">
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-user"></i> 180 Days</li>
+                                <li><i class="fa fa-comment"></i>50 Students</li>
+                            </ul>
+                            <a href="#" class="cart_btn">Add to Cart</a>
+                        </div>
+                    </div>
+                </div><!-- Ends: .single courses -->
+            </div><!-- Ends: . -->
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="single-courses">
+                    <div class="courses_banner_wrapper">
+                        <div class="courses_banner"><a href="#"><img src="{% static 'images/courses/courses_3.jpg' %}" alt="" class="img-fluid"></a></div>
+                        <div class="purchase_price">
+                            <a href="#" class="read_more-btn">120$</a>
+                        </div>
+                    </div>
+                    <div class="courses_info_wrapper">
+                        <div class="courses_title">
+                            <h3><a href="#">Network Introductions</a></h3>
+                            <div class="teachers_name">Teacher - <a href="#" title="">Preston Marshall</a></div>
+                        </div>
+                        <div class="courses_info">
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-user"></i> 140 Days</li>
+                                <li><i class="fa fa-comment"></i>60 Students</li>
+                            </ul>
+                            <a href="#" class="cart_btn">Add to Cart</a>
+                        </div>
+                    </div>
+                </div><!-- Ends: .single courses -->
+            </div><!-- Ends: . -->                                       
+        </div>
+
+    </div>
+</section><!-- ./ End Courses Area section -->
+
+
+
+
+
+{% endblock content %}
+

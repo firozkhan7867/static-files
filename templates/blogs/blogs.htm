@@ -1,0 +1,249 @@
+{% extends 'base.htm' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Blogs Page - 
+{% endblock title %}
+
+
+{% block content %}
+
+<header class="header_inner blog_page">
+<div class="intro_wrapper">
+    <div class="container">  
+        <div class="row">        
+             <div class="col-sm-12 col-md-8 col-lg-8">
+                <div class="intro_text">
+                    <h1>Blog Standard</h1>
+                    <div class="pages_links">
+                        <a href="#" title="">Home</a>
+                        <a href="#" title="" class="active">Blog</a>
+                    </div>
+                </div>
+            </div>              
+
+        </div>
+    </div> 
+</div> 
+</header> <!-- End Header -->
+
+
+
+
+<section class="blog_wrapper bg-light">
+    <div class="container">  
+        <div class="row">        
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                {%if  blogs %}
+                    {% for  blog in blogs %}
+                        <div class="single_blog">
+                            <div class="blog_banner">
+                                <a href="{% url 'blog-details' blog.name %}" title=""><img src="{{blog.main_photo.url}}" alt="" width="100%" class="img-fluid"></a>
+                            </div>
+                            <div class="post_content_wrapper">
+                                <div class="post_date"><p>Posted On : &nbsp;&nbsp; {{blog.date_upload | naturaltime}}    &nbsp;  <span>Education Category</span></p></div>
+                                <h3><a href="{% url 'blog-details' blog.name %}" title="">{{blog.name}}</a></h3>
+                                <p>{{blog.short_description | safe}}</p>
+                                <div class="post_by d-flex justify-content-between">
+                                    <a href="{% url 'blog-details' blog.name %}" title="">Read More  <i class="flaticon-login-button"></i></a>
+                                    <div class="social_wrapper d-flex">
+                                        <span>Share On : </span>
+                                        <ul class="social-items d-flex list-unstyled">
+                                            <li><a href="#"><i class="fab fa-facebook-f fb_icon"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter tw_icon"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-linkedin-in link_icon"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-instagram in_icon"></i></a></li>
+                                        </ul>   
+                                    </div>
+                                </div>
+                                <ul class="post_bloger">
+                                    <li>BY : {{blog.teacher}} {{blog.user}}</li> 
+                                    <li><i class="fas fa-thumbs-up"></i> 2 Likes</li>
+                                    <li><i class="fas fa-comment"></i>2 Comments</li>
+                                </ul>               
+                            </div>
+                        </div> 
+                    {% endfor %}
+                {% endif %}
+                
+                
+                <div class="pagination_blog">
+                    {% if blogs.has_other_pages %}
+                    <ul>
+                        {% if blogs.has_previous %}
+                        <li class="">
+                            <a class="" href="?page={{listings.previous_page_number}}">&laquo;</a>
+                        </li>
+                        {% else %}
+                        <li class="disabled">
+                            <a class="">&laquo;</a>
+                        </li>
+                        <!--  -->
+                        {% endif %}
+                        <!--  -->
+                        {% for i in blogs.paginator.page_range %}
+                        <!--  -->
+                        {% if blogs.number == i %}
+                        <li class="current">
+                            <a class="">{{i}}</a>
+                        </li>
+                        {% else %}
+                        <li class="">
+                            <a href="?page={{i}}" class="">{{i}}</a>
+                        </li>
+                        {% endif %}
+                        <!--  -->
+                        {% endfor %}
+                        <!--  -->
+                        {% if blogs.has_next %}
+                        <li>
+                            <a class="" href="?page={{listings.next_page_number}}"><i class='flaticon-right-arrow'></i></a>
+                        </li>
+                        {% else %}
+                        <li class="disabled">
+                            <a class="">&raquo;</a>
+                        </li>
+                        <!--  -->
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </div> 
+                <!-- <div class="pagination_blog">
+                    <ul>
+                        <li><a href="#">1</a></li>
+                        <li class="current"><a href="#">2</a></li>
+                        <li><a href="#" class=""><i class='flaticon-right-arrow'></i></a></li>
+                    </ul>
+                </div>             -->
+            </div> <!-- End Blog Right Side--->
+
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 blog_wrapper_right ">
+                <div class="blog-right-items">
+
+                    <div class="become_a_teacher widget_single">
+                        <div class="form-full-box">
+                            <div class="form_title">
+                                <h2>Become A Membar</h2>
+                                <p>Get Instant access to <span>5000+ </span>Video courses </p>
+                            </div>
+                            <form>
+                                <div class="register-form">
+                                    <div class="row">
+                                        <div class="col-12 col-xs-12 col-md-12">
+                                            <div class="form-group">
+                                                <label><i class="fas fa-user"></i></label>
+                                                <input class="form-control" name="name" placeholder="Write Your Name" required="" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-xs-12 col-md-12">
+                                            <div class="form-group">
+                                                <label><i class="flaticon-email"></i></label>
+                                                <input class="form-control" name="email" placeholder="Write Your E-mail" required="" type="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xs-12 col-md-12">
+                                            <div class="form-group massage_text">
+                                                <label><i class="flaticon-copywriting"></i></label>
+                                                <textarea class="form-control" placeholder="Write Something Here" required="" ></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xs-12 col-md-12 register-btn-box">
+                                            <button class="register-btn" type="submit">Send Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="recent_post_wrapper widget_single">
+                        <div class="items-title">
+                            <h3 class="title">Recent Post</h3>
+                        </div>
+                        <div class="single-post">
+                            <div class="recent_img">
+                                 <a href="#" title=""><img src="{% static 'images/blog/side_blog_1.jpg' %}" alt="" class="img-fluid"></a>
+                            </div>
+                            <div class="post_title">
+                                <a href="#" title="">Research of Learn training process</a>
+                                <div class="post-date">
+                                    <span>May 29, 2019</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="single-post">
+                            <div class="recent_img">
+                                <a href="#" title=""><img src="{% static 'images/blog/side_blog_2.jpg' %}" alt="" class="img-fluid"></a>
+                            </div>
+                            <div class="post_title">
+                                <a href="#" title="">How to Become Master In CSS within a Week.</a>
+                                <div class="post-date">
+                                    <span>25 August, 2019</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="single-post">
+                            <div class="recent_img">
+                                <a href="#" title=""><img src="{% static 'images/blog/side_blog_3.jpg' %}" alt="" class="img-fluid"></a>
+                            </div>
+                            <div class="post_title">
+                                <a href="#" title="">Students work together to solve a problem.</a>
+                                <div class="post-date">
+                                    <span>25 August, 2019</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="archives widget_single">
+                        <div class="items-title">
+                            <h3 class="title">All Categories</h3>
+                        </div>
+                        <div class="archives-items">
+                            <ul class="list-unstyled">
+                                <li><a href="#" title="">Art & Design </a></li>
+                                <li><a href="#" title="">Busness</a></li>
+                                <li><a href="#" title="">IT & Software</a></li>
+                                <li><a href="#" title="">Languages</a></li>
+                                <li><a href="#" title="">Programming</a></li>                                
+                                <li><a href="#" title="">Technology</a></li>
+                            </ul>
+                        </div>
+                    </div>  
+
+                    <div class="popular_tags widget_single">
+                        <div class="items-title">
+                            <h3 class="title">Popular Tags</h3>
+                        </div>
+                        <div class="tags-items">
+                            <ul class="list-unstyled">
+                                <li><a href="#" title="">Travel</a></li>
+                                <li><a href="#" title="">Amazing</a></li>
+                                <li><a href="#" title="">Clean</a></li>
+                                <li><a href="#" title="">Responsive</a></li>
+                                <li><a href="#" title="">Room</a></li>
+                                <li><a href="#" title="">Travel Tips</a></li>
+                                <li><a href="#" title="">Tour</a></li>
+                                <li><a href="#" title="">Design</a></li>
+                            </ul>
+                        </div>
+                    </div>  
+                </div>
+            </div><!-- ./ End  Blog Right Wrapper-->
+            
+        </div>
+    </div> 
+</section><!-- ./ End  Blog Wrapper-->
+
+
+
+
+
+{% endblock content %}
+

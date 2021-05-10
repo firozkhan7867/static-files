@@ -1,0 +1,84 @@
+{% extends 'admin/base.htm' %}
+
+{% block title %}
+Manage Blogs
+{% endblock title %}
+{% load humanize %}
+
+{% block page_title %}
+Manage Blogs
+{% endblock page_title %}
+
+{% block main_content %}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Blog  Detials</h3>
+        
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+        
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover  text-nowrap">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Blog Name</th>
+                                    <th>Teacher Name</th>
+                                    <th>Blog Main Image</th>
+                                    <th>Blog Second Image</th>
+                                    <th>Blog Thirds Image</th>
+                                    <th>Date uploaded</th>
+                                    <th>User Name</th>
+                                    <th>User photo</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for blog in blogs %}
+                                <tr>
+                                    <td>{{ blog.blog_id  }}</td>
+                                    <td>{{ blog.name }}</td>
+                                    <td>{{ blog.teacher.username }}</td>
+                                    <td> <img src="{{ blog.main_photo.url }}" alt="profile pic" style="width: 100px;"></td>
+                                    <td> <img src="{{ blog.main_photo_1.url }}" alt="profile pic" style="width: 100px;"></td>
+                                    {% if blog.main_photo_2.url is not None %}
+                                        <td> <img src="{{ blog.main_photo_2.url }}" alt="profile pic" style="width: 100px;"></td>
+                                    {% else %}
+                                    <td>No image Uploaded</td>
+                                    {% endif %}
+                                    <td>{{ blog.date_upload  }} </td>
+                                    <td>{% for user in blog.user.all %}{{user.username}}{%endfor %}</td>
+                                    <td>{% for user in blog.user.all %} <img src="{{ user.photo.url }}" alt="profile pic" style="width: 100px;">{% endfor %}</td>
+                                    <td> <a href="#" class="btn btn-primary">Edit</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+{% endblock main_content %}

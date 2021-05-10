@@ -1,0 +1,185 @@
+{% extends 'admin/base.htm' %}
+
+{% block title %}
+ Add Blog
+{% endblock title %}
+{% block page_title %}
+Add Blog
+{% endblock page_title %}
+
+{% block main_content %}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Blog</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Blog Title</label>
+                                <input type="text" class="form-control" name="name" placeholder="Blog Title">
+                            </div>
+                            <div class="form-group">
+                                <label>Select List Teachers </label>
+                                <select id="course" name="sem"  class="form-control custom-select bg-white border-left-0 border-md" multiple>
+                                    {% if teachers %}
+                                        {% for teacher in teachers %}
+                                            <option value="{{teacher}}">{{teacher}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Blog main Image</label>
+                                <input type="file" class="form-control" name="photo_1">
+                            </div>
+                            <div class="form-group">
+                                <label>Blog Second Image ---- <small>If required any</small> (Optional)</label>
+                                <input type="file" class="form-control" name="photo_2">
+                            </div>
+                            <div class="form-group">
+                                <label>Blog Third Image ---- <small>If required any</small>(Optional)</label>
+                                <input type="file" class="form-control" name="photo_3">
+                            </div>
+                            <div class="form-group">
+                                <label>Short Description </label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <!-- /.card-header -->
+                                            <div class="card-body pad">
+                                                <div class="mb-3">
+                                                    <label>Short Description</label>
+                                                    <textarea name="short_description" class="textarea" placeholder="Place some text here"
+                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label> Main Top Description </label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <!-- /.card-header -->
+                                            <div class="card-body pad">
+                                                <div class="mb-3">
+                                                    <label>Main Description</label>
+                                                    <textarea name="description" class="textarea" placeholder="Place some text here"
+                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Second Description </label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <!-- /.card-header -->
+                                            <div class="card-body pad">
+                                                <div class="mb-3">
+                                                    <label>Second Description</label>
+                                                    <textarea name="description_2" class="textarea" placeholder="Place some text here"
+                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Description </label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <!-- /.card-header -->
+                                            <div class="card-body pad">
+                                                <div class="mb-3">
+                                                    <label>Last Description</label>
+                                                    <textarea name="description_3" class="textarea" placeholder="Place some text here"
+                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            
+                            
+
+                            <!-- <div class="form-group">
+                                {% if messages %}
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                    <div class="alert alert-danger btn-block" style="margin-top: 10px;"> {{message}}</div>
+                                    {% endif %}
+                                    {% if message.tags == "success" %}
+                                    <div class="alert alert-success btn-block" style="margin-top: 10px;"> {{message}}</div>
+                                    {% endif %}
+                                    
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div> -->
+                            
+                        </div>
+                        <!-- /.card-body -->
+            
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Add Subject</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <!-- /.card -->
+            
+                
+            
+            </div>
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+{% endblock main_content %}
+
+{% block custom_js %}
+<script>
+    $(function () {
+      // Summernote
+      $('.textarea').summernote()
+    })
+  </script>
+{% endblock custom_js %}

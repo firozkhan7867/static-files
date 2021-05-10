@@ -1,0 +1,75 @@
+{% extends 'base.htm' %}
+
+{% load static %}
+
+{% block title %}
+Faculty List Page
+{% endblock title %}
+
+{% block content %}
+
+<header class="header_inner become_a_teacher">
+    <div class="intro_wrapper">
+        <div class="container">  
+            <div class="row">        
+                <div class="col-sm-12 col-md-8 col-lg-8">
+                    <div class="intro_text">
+                        <h1>Our Professors</h1>
+                        <div class="pages_links">
+                            <a href="#" title="">Home</a>
+                            <a href="#" title="" class="active">professors Page</a>
+                        </div>
+                    </div>
+                </div>              
+
+            </div>
+        </div> 
+    </div> 
+</header> <!-- End header -->
+
+
+
+<!--========={ Our Instructiors }========-->
+<section class="our_instructors" id="instructors_page">
+    <div class="container">
+        <div class="row">
+
+            {% if teachers %}
+                {% for teacher in teachers %}
+                    <div class="single-wrappe col-12 col-sm-6 col-md-4 col-lg-4" style="height: 400px;">
+                        <div class="team-single-item">
+                            <figure>
+                                <div class="member-img">
+                                    <div class="teachars_pro">
+                                        <img src="{{teacher.profile_photo.url}}" alt="member img" class="img-fluid" style="height: 300px;">
+                                    </div>
+                                </div>
+                                <figcaption>
+                                    <div class="member-name">
+                                        <h4><a href="{% url 'teacher-details' teacher.username %}" title="">{{teacher}}</a></h4>
+                                        <span>Professor</span>
+                                    </div>                            
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            \
+            <div class="pagination_blog">
+                <ul>
+                    <li><a href="#">1</a></li>
+                    <li class="current"><a href="#">2</a></li>
+                    <li><a href="#" class=""><i class='flaticon-right-arrow'></i></a></li>
+                </ul>
+            </div>                    
+        </div>
+    </div>
+</section><!-- ./ End Our Instructiors -->
+
+
+
+
+
+{% endblock content %}
+

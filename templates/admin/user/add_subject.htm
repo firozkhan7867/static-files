@@ -1,0 +1,410 @@
+{% extends 'admin/base.htm' %}
+
+{% block title %}
+ Add Subject
+{% endblock title %}
+{% block page_title %}
+Add Subject
+{% endblock page_title %}
+
+{% block main_content %}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Subject</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Subject Name</label>
+                                <input type="text" class="form-control" name="subject_name" placeholder="Subject Name">
+                            </div>
+                            <div class="form-group">
+                                <label>Select Branch</label>
+                                <select id="department" name="department"  class="form-control custom-select bg-white border-left-0 border-md" multiple>
+                                    {% if branchs %}
+                                        {% for branch in branchs %}
+                                            <option value="{{branch.branch_id}}">{{branch.branch_name}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Course</label>
+                                <select id="course" name="course"  class="form-control custom-select bg-white border-left-0 border-md" multiple>
+                                    {% if courses %}
+                                        {% for course in courses %}
+                                            <option value="{{course.course_name}}">{{course.course_name}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Select List of All Semester It Can Appear</label>
+                                <select id="course" name="sem"  class="form-control custom-select bg-white border-left-0 border-md" multiple>
+                                    {% if sems %}
+                                        {% for sem in sems %}
+                                            <option value="{{sem.sem_name}}">{{sem.sem_name}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Select List Teachers </label>
+                                <select id="course" name="sem"  class="form-control custom-select bg-white border-left-0 border-md" multiple>
+                                    {% if teachers %}
+                                        {% for teacher in teachers %}
+                                            <option value="{{teacher}}">{{teacher}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Chapter I</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <label>Chapter Name</label>
+                                            <input type="text" class="form-control" name="chapter_1" placeholder="Chapter Name">
+                                          </div>
+                                          <!-- /.card-header -->
+                                            <div class="card-body pad">
+                                                <div class="form-group">
+                                                    <label> PDF Links</label>
+                                                    <input type="url" class="form-control" name="pdf_link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>YouTube Video Tutorial Links</label>
+                                                    <input type="url" class="form-control" name="Video link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <br>
+                                                <div class="mb-3">
+                                                    <label>List of Topics</label>
+                                                    <textarea name="qualifications" class="textarea" placeholder="Place some text here"
+                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Chapter II</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <label>Chapter Name</label>
+                                            <input type="text" class="form-control" name="chapter_1" placeholder="Chapter Name">
+                                          </div>
+                                          <!-- /.card-header -->
+                                            <div class="card-body pad">
+                                                <div class="form-group">
+                                                    <label> PDF Links</label>
+                                                    <input type="url" class="form-control" name="pdf_link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>YouTube Video Tutorial Links</label>
+                                                    <input type="url" class="form-control" name="Video link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <br>
+                                                <div class="mb-3">
+                                                    <label>List of Topics</label>
+                                                    <textarea name="qualifications" class="textarea" placeholder="Place some text here"
+                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Chapter III</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <label>Chapter Name</label>
+                                            <input type="text" class="form-control" name="chapter_1" placeholder="Chapter Name">
+                                          </div>
+                                          <!-- /.card-header -->
+                                            <div class="card-body pad">
+                                                <div class="form-group">
+                                                    <label> PDF Links</label>
+                                                    <input type="url" class="form-control" name="pdf_link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>YouTube Video Tutorial Links</label>
+                                                    <input type="url" class="form-control" name="Video link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <br>
+                                                <div class="mb-3">
+                                                    <label>List of Topics</label>
+                                                    <textarea name="qualifications" class="textarea" placeholder="Place some text here"
+                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Chapter IV</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <label>Chapter Name</label>
+                                            <input type="text" class="form-control" name="chapter_1" placeholder="Chapter Name">
+                                          </div>
+                                          <!-- /.card-header -->
+                                            <div class="card-body pad">
+                                                <div class="form-group">
+                                                    <label> PDF Links</label>
+                                                    <input type="url" class="form-control" name="pdf_link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>YouTube Video Tutorial Links</label>
+                                                    <input type="url" class="form-control" name="Video link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <br>
+                                                <div class="mb-3">
+                                                    <label>List of Topics</label>
+                                                    <textarea name="qualifications" class="textarea" placeholder="Place some text here"
+                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Chapter V</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <label>Chapter Name</label>
+                                            <input type="text" class="form-control" name="chapter_1" placeholder="Chapter Name">
+                                          </div>
+                                          <!-- /.card-header -->
+                                            <div class="card-body pad">
+                                                <div class="form-group">
+                                                    <label> PDF Links</label>
+                                                    <input type="url" class="form-control" name="pdf_link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>YouTube Video Tutorial Links</label>
+                                                    <input type="url" class="form-control" name="Video link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <br>
+                                                <div class="mb-3">
+                                                    <label>List of Topics</label>
+                                                    <textarea name="qualifications" class="textarea" placeholder="Place some text here"
+                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Chapter VI</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <label>Chapter Name</label>
+                                            <input type="text" class="form-control" name="chapter_1" placeholder="Chapter Name">
+                                          </div>
+                                          <!-- /.card-header -->
+                                            <div class="card-body pad">
+                                                <div class="form-group">
+                                                    <label> PDF Links</label>
+                                                    <input type="url" class="form-control" name="pdf_link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>YouTube Video Tutorial Links</label>
+                                                    <input type="url" class="form-control" name="Video link" placeholder="https://www.urllink.com/">
+                                                </div>
+                                                <br>
+                                                <div class="mb-3">
+                                                    <label>List of Topics</label>
+                                                    <textarea name="qualifications" class="textarea" placeholder="Place some text here"
+                                                              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Question Paper Link</label>
+                                <input type="url" class="form-control" name="question_paper" placeholder="https://www.urllink.com/">
+                            </div>
+                            <div class="form-group">
+                                <label>Subject Main Image</label>
+                                <input type="file" class="form-control" name="photo_1">
+                            </div>
+                            <div class="form-group">
+                                <label>Subject Second Image ---- <small>If required any</small> (Optional)</label>
+                                <input type="file" class="form-control" name="photo_2">
+                            </div>
+                            <div class="form-group">
+                                <label>Subject Third Image ---- <small>If required any</small>(Optional)</label>
+                                <input type="file" class="form-control" name="photo_3">
+                            </div>
+                            <br>
+                            <hr class="bold">
+                            <br>
+                            <div class="form-group">
+                                <label>Course Description: </label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <h3 class="card-title">Course Description</h3>
+                                          </div>
+                                          <!-- /.card-header -->
+                                          <div class="card-body pad">
+                                            <div class="mb-3">
+                                              <textarea class="textarea" name="description_1" placeholder="Place some text here"
+                                                        style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>What Will I Learn</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <h3 class="card-title">What Will I Learn</h3>
+                                          </div>
+                                          <!-- /.card-header -->
+                                          <div class="card-body pad">
+                                            <div class="mb-3">
+                                              <textarea class="textarea" name="description_2" placeholder="Place some text here"
+                                                        style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Course Outcome</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <h3 class="card-title">Course Outcome</h3>
+                                          </div>
+                                          <!-- /.card-header -->
+                                          <div class="card-body pad">
+                                            <div class="mb-3">
+                                              <textarea class="textarea" name="description_3" placeholder="Place some text here"
+                                                        style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            
+
+                            <!-- <div class="form-group">
+                                {% if messages %}
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                    <div class="alert alert-danger btn-block" style="margin-top: 10px;"> {{message}}</div>
+                                    {% endif %}
+                                    {% if message.tags == "success" %}
+                                    <div class="alert alert-success btn-block" style="margin-top: 10px;"> {{message}}</div>
+                                    {% endif %}
+                                    
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div> -->
+                            
+                        </div>
+                        <!-- /.card-body -->
+            
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Add Subject</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <!-- /.card -->
+            
+                
+            
+            </div>
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+{% endblock main_content %}
+
+{% block custom_js %}
+<script>
+    $(function () {
+      // Summernote
+      $('.textarea').summernote()
+    })
+  </script>
+{% endblock custom_js %}

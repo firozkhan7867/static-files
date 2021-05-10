@@ -1,0 +1,106 @@
+{% load static %}
+<header class="header_tow">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+
+    <div class="edu_nav">
+        <div class="container">
+            <nav class="navbar navbar-expand-md navbar-dark bg-faded">
+                <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo2.png' %}" alt="logo"></a>
+                <div class="collapse navbar-collapse main-menu" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav lavalamp ml-auto menu">
+                        <li class="nav-item"><a href="{% url 'index' %}"
+                            {% if 'index' in request.path %} 
+                                class="nav-link active"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %}
+                                >Home</a>
+                            
+                        </li>
+                        <li class="nav-item"><a href="{% url 'about' %}" 
+                            {% if 'about' in request.path %} 
+                                class="nav-link active"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %}
+                                
+                            >About</a></li>
+                        <li class="nav-item"><a href="{% url 'courses' %}" 
+                            
+                            {% if 'course' in request.path %} 
+                                class="nav-link active"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %}
+                                
+                            >Courses</a>
+                            
+                        </li>
+                        <li class="nav-item"><a href="{% url 'blogs' %}"  
+                            
+                            {% if 'blogs' in request.path %} 
+                                class="nav-link active"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %}
+                                
+                            >Blogs</a>
+                            
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link">Pages</a>
+                            <ul class="navbar-nav nav mx-auto">                                
+                                <li class="nav-item"><a href="#" class="nav-link dropdown_icon">Events</a>
+                                    <ul class="navbar-nav nav mx-auto">
+                                        <li class="nav-item"><a href="#" class="nav-link">Event</a></li>
+                                        <li class="nav-item"><a href="#" class="nav-link">Event Details</a></li>
+                                    </ul>    
+                                </li>                                
+                                <li class="nav-item"><a href="{% url 'teachers' %}" class="nav-link">Teachers Page</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Forgot Password</a></li>
+                            </ul>
+                        </li>
+
+                        
+                        {% if user.is_authenticated %}
+                            <li><a class="nav-link" href="{% url 'list_user' %}">
+                                    Welcome {{user.username}}</a>
+                            </li>
+                            <li class="nav-item"><a href="{% url 'logout' %}"class="nav-link"><i class="fas fa-sign-out-alt"></i>logout</a>
+                                
+                            </li>
+                        {% else %}
+                            <li
+                            {% if 'register' in request.path %} 
+                                class="nav-item active"
+                            {% else %}
+                                class="nav-item"
+                            {% endif %}
+                            >
+                            <a class="nav-link" href="{% url 'register' %}">
+                                <i class="fas fa-user-plus"></i> Register</a>
+                        </li>
+                        <li 
+                            {% if 'login' in request.path %} 
+                                class="nav-item active"
+                            {% else %}
+                                class="nav-item"
+                            {% endif %}
+                        >
+                            <a class="nav-link" href="{% url 'login' %}">
+                                <i class="fas fa-sign-in-alt"></i>Login</a>
+                            </li>
+                        {% endif %}
+
+                        
+                    </ul>
+                </div>
+                
+            </nav>
+            <!-- END NAVBAR -->
+        </div>
+    </div>
+</header>

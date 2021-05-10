@@ -1,0 +1,169 @@
+{% extends 'base.htm' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Courses List
+{% endblock title %}
+
+{% block content %}
+
+<header class="header_inner courses_page">
+<div class="intro_wrapper">
+    <div class="container">  
+        <div class="row">        
+             <div class="col-sm-12 col-md-8 col-lg-8">
+                <div class="intro_text">
+                    <h1>Courese Page</h1>
+                    <div class="pages_links">
+                        <a href="{% url 'index' %}" title="">Home</a>
+                        <a href="{% url 'branch-courses' branch.branch_name %}" title="" class="active">Course Page</a>
+                        <a href="#" title="">{{current_sem.sem_name}}</a>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div> 
+</div> 
+</header> <!-- End Header --> 
+
+
+<!--Start Courses Area Section-->
+<section class="popular_courses bg-light" id="popular_courses_page">
+    <div class="container"> 
+        <div class="row">
+            <div class="col-sm-8 col-md-8 col-lg-8">
+                <div class="search_wrapper">
+                    <div class="search-option" >
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group d-flex">
+                                <div class="input-group col-lg-12 col-12 mb-4">
+                                    <select id="sem" name="sem"  class="form-control custom-select bg-secondary border-left-0 border-md">
+                                        {% if sem_list %}
+                                            {% for sem in sem_list %}
+                                            <option value="{{sem.sem_id}}">{{sem.sem_name}}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                </div>
+                                <input type="hidden" name="course" value="{{course.couse_id}}">
+                                <input type="hidden" name="branch" value="{{branch.branch_id}}">
+                            </div>
+                            <div class="submit-btn">
+                                <button type="submit" class="text-center  btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="sub_title">
+                    {% if current_sem is not None %}
+                        <h2>Courses available in {{current_sem.sem_name}}</h2>
+                    {% else %}
+                        <h2>  All  Courses</h2>   
+                    {% endif %}
+                            
+                </div><!-- ends: .section-header -->
+            </div>
+            {% if subs %}
+                {% for sub in subs %}
+
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="single-courses" style="height: 500px;">
+                            <div class="courses_banner_wrapper row">
+                                <div class="courses_banner col-lg-12 col-12"><a href="{% url 'course-details' sub.subject_name %}"><img src="{{sub.subj_image.url}}" alt="" class="img-fluid"></a></div>
+                                <div class="purchase_price col-lg-12 col-12">
+                                    <a href="#" class="read_more-btn">Free</a>
+                                </div>
+                            </div>
+                            <div class="courses_info_wrapper">
+                                <div class="courses_title">
+                                    <h3><a href="#">{{sub.subject_name}}</a></h3>
+                                    <div class="teachers_name">Teachers - 
+                                        {% for i in  sub.teacher_set.all %}
+                                        <a href="{% url 'teacher-details' i.username %}" title="">  {{i}} </a> &nbsp
+                                        {% endfor %}
+                                        
+                                    </div>
+                                </div>
+                                <div class="courses_info">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-user"></i> {{ sub.subjectdescription.upload_date | naturaltime }}  </li>
+                                        <li><i class="fas fa-calendar-alt"></i>30 Students</li>
+                                    </ul>
+                                    <a href="{% url 'course-details' sub.subject_name %}" class="cart_btn">More Details</a>
+                                </div>
+                            </div>
+                        </div><!-- Ends: .single courses -->
+                    </div><!-- Ends: . -->
+
+                {% endfor %}
+            {% else %}
+                <h3>No courses available right now . Stay tune.....!</h3>
+            {% endif %}
+            
+
+
+            <div class="pagination_blog">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if subs.has_other_pages %}
+                        <ul>
+                            {% if subs.has_previous %}
+                            <li class="">
+                                <a class="" href="?page={{listings.previous_page_number}}">&laquo;</a>
+                            </li>
+                            {% else %}
+                            <li class="disabled">
+                                <a class="">&laquo;</a>
+                            </li>
+                            <!--  -->
+                            {% endif %}
+                            <!--  -->
+                            {% for i in subs.paginator.page_range %}
+                            <!--  -->
+                            {% if subs.number == i %}
+                            <li class="current">
+                                <a class="">{{i}}</a>
+                            </li>
+                            {% else %}
+                            <li class="">
+                                <a href="?page={{i}}" class="">{{i}}</a>
+                            </li>
+                            {% endif %}
+                            <!--  -->
+                            {% endfor %}
+                            <!--  -->
+                            {% if subs.has_next %}
+                            <li>
+                                <a class="" href="?page={{listings.next_page_number}}"><i class='flaticon-right-arrow'></i></a>
+                            </li>
+                            {% else %}
+                            <li class="disabled">
+                                <a class="">&raquo;</a>
+                            </li>
+                            <!--  -->
+                            {% endif %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- {% if subs.has_other_pages %}
+                    <ul>
+                        <li><a href="#">1</a></li>
+                        <li class="current"><a href="#">2</a></li>
+                        <li><a href="#" class=""><i class='flaticon-right-arrow'></i></a></li>
+                    </ul>
+                {% endif %} -->
+            </div>                                       
+        
+
+    </div>
+</section><!-- ./ End Courses Area section -->
+
+
+
+{% endblock content %}

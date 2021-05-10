@@ -1,0 +1,214 @@
+{% extends 'admin/base.htm' %}
+
+{% block title %}
+ Add Teacher
+{% endblock title %}
+{% block page_title %}
+Add Teacher
+{% endblock page_title %}
+
+{% block main_content %}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Teacher</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label>UserName</label>
+                                <input type="text" class="form-control" name="username" placeholder="username">
+                            </div>
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="first_name" placeholder="First Name">
+                            </div>
+                            <div class="form-group">
+                                <label >Last Name</label>
+                                <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" class="form-control" name="Address" placeholder="Address">
+                            </div>
+                            <div class="form-group">
+                                <label>Experience</label>
+                                <input type="number" class="form-control" name="exp" placeholder="Experience">
+                            </div>
+                            <div class="form-group">
+                                <label>Department</label>
+                                <select id="department" name="department"  class="form-control custom-select bg-white border-left-0 border-md">
+                                    {% if branchs %}
+                                        {% for branch in branchs %}
+                                            <option value="{{branch.branch_id}}">{{branch.branch_name}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Course</label>
+                                <select id="course" name="course"  class="form-control custom-select bg-white border-left-0 border-md">
+                                    {% if courses %}
+                                        {% for course in courses %}
+                                            <option value="{{course.subject_name}}">{{course.subject_name}}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Languages</label>
+                                <input type="text" class="form-control" name="language" placeholder="Hindi,English,Telugu..etc">
+                            </div>
+                            <div class="form-group">
+                                <label>Programming Skills</label>
+                                <input type="number" class="form-control" name="pro_skills" placeholder="80%">
+                            </div>
+                            <div class="form-group">
+                                <label>Communication Skills</label>
+                                <input type="number" class="form-control" name="comm_skills" placeholder="80%">
+                            </div>
+                            <div class="form-group">
+                                <label>Teaching Skills</label>
+                                <input type="number" class="form-control" name="teach_skills" placeholder="80%">
+                            </div>
+                            <div class="form-group">
+                                <label>About</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <h3 class="card-title">About</h3>
+                                          </div>
+                                          <!-- /.card-header -->
+                                          <div class="card-body pad">
+                                            <div class="mb-3">
+                                              <textarea class="textarea" name="about" placeholder="Place some text here"
+                                                        style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Qualifications</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <h3 class="card-title">
+                                                Qualifications
+                                            </h3>
+                                        
+                                          </div>
+                                          <!-- /.card-header -->
+                                          <div class="card-body pad">
+                                            <div class="mb-3">
+                                              <textarea name="qualifications" class="textarea" placeholder="Place some text here"
+                                                        style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Achievements</label>
+                                <section class="content">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="card card-outline card-info">
+                                          <div class="card-header">
+                                            <h3 class="card-title">
+                                                Achievements
+                                            </h3>
+                                        
+                                          </div>
+                                          <!-- /.card-header -->
+                                          <div class="card-body pad">
+                                            <div class="mb-3">
+                                              <textarea name="achievements" class="textarea" placeholder="Place some text here"
+                                                        style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- /.col-->
+                                    </div>
+                                    <!-- ./row -->
+                                </section>
+                            </div>
+                            <div class="form-group">
+                                <label>Profile Image</label>
+                                <input type="file" class="form-control" name="photo">
+                            </div>
+                            
+                            
+
+                            <!-- <div class="form-group">
+                                {% if messages %}
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                    <div class="alert alert-danger btn-block" style="margin-top: 10px;"> {{message}}</div>
+                                    {% endif %}
+                                    {% if message.tags == "success" %}
+                                    <div class="alert alert-success btn-block" style="margin-top: 10px;"> {{message}}</div>
+                                    {% endif %}
+                                    
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div> -->
+                            
+                        </div>
+                        <!-- /.card-body -->
+            
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Add Staff</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <!-- /.card -->
+            
+                
+            
+            </div>
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+{% endblock main_content %}
+
+{% block custom_js %}
+<script>
+    $(function () {
+      // Summernote
+      $('.textarea').summernote()
+    })
+  </script>
+{% endblock custom_js %}
